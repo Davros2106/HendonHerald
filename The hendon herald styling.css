@@ -67,6 +67,8 @@ thead {
 main {
     width:780px;
     background-color:#F2F2F2;
+    display: inline-block;
+    margin: 0;
 }
 
 #contentcontainer {
@@ -100,9 +102,9 @@ article {
 }
 
 aside {
-    width:200px;
-    float:right;
-    vertical-align:top
+    width:196px;
+    display: inline-block;
+    vertical-align:top;
 }
 
 aside h3 {

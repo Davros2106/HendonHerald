@@ -3,6 +3,10 @@
 <head>
     <title>The Hendon Herald - Sunderland's Premier News Source</title>
     <link href="The%20hendon%20herald%20styling.css" rel="stylesheet">
+    <link href="Main%20Project%20Slider%20Resources/Css/flexslider.css">
+
+        <script src="Main%20Project%20Slider%20Resources/Scripts/jquery-1.11.1.min.js"></script>
+        <script src="Main%20Project%20Slider%20Resources/Scripts/jquery.flexslider-min.js"></script>
 </head>
 
 <body>
@@ -37,82 +41,6 @@
     </header><br>
     <br>
     <br>
-
-    <div id="LeagueTable">
-        <aside>
-            <h3>Pointlessness League</h3>
-
-            <table>
-                <thead>
-                <tr>
-                    <th>Club</th>
-
-                    <th>Points</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr>
-                    <td>IDNK Whyduz</td>
-
-                    <td>105</td>
-                </tr>
-
-                <tr>
-                    <td>NE 1 FOLLOW</td>
-
-                    <td>45</td>
-                </tr>
-
-                <tr>
-                    <td>Da Football</td>
-
-                    <td>42</td>
-                </tr>
-
-                <tr>
-                    <td>League</td>
-
-                    <td>37</td>
-                </tr>
-
-                <tr>
-                    <td>Allover</td>
-
-                    <td>17</td>
-                </tr>
-
-                <tr>
-                    <td>PaidPlayaz</td>
-
-                    <td>3</td>
-                </tr>
-
-                <tr>
-                    <td>Neasden OG</td>
-
-                    <td>-4</td>
-                </tr>
-                </tbody>
-            </table>
-
-
-            <form name="inputForm" onsubmit="return validateForm()">
-            <h3>Contact Us</h3>
-            Your Email:
-            <input type="email" name="email" id="email"/><br>
-            Your Message:
-            <textarea type="text" name="message" id="message"></textarea>
-            <button onclick="loadxmlhttp()">Submit</button>
-            <script>
-                function loadxmlhttp() {
-                    document.getElementById("inputForm").submit();
-                }
-            </script>
-            </form>
-        </aside>
-    </div>
-
 
   <main>
     <h2>Spectral Figure Found in Mowbray Park</h2>
@@ -191,6 +119,103 @@
     </article>
   </main>
 
+    <aside>
+
+        <section class="flexslider">
+            <ul class="slides">
+                <li>
+                    <figure>
+                        <img src="Images/Rotator/Confusing Building.jpg" alt="Confusing Building" id="confusingbuilding">
+                        <figcaption>"What is it? I don't know"</figcaption>
+                    </figure>
+                </li>
+                <li>
+                    <figure>
+                        <img alt="A Level Results" id="alevelresults" src="Images/Rotator/A Level.jpg">
+                        <figcaption>"Yet more leaping 18 year olds"</figcaption>
+                    </figure>
+                </li>
+
+                <li>
+                    <figure>
+                        <img alt="Wrong Hendon" id="wronghendon" src="Images/Rotator/Wong%20Hendon%20Found.JPG">
+                        <figcaption>Turns out it's full of busies</figcaption>
+                    </figure>
+                </li>
+            </ul>
+
+        </section>
+
+        <div id="leaguetable">
+            <h3>Pointlessness League</h3>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Club</th>
+
+                    <th>Points</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>IDNK Whyduz</td>
+
+                    <td>105</td>
+                </tr>
+
+                <tr>
+                    <td>NE 1 FOLLOW</td>
+
+                    <td>45</td>
+                </tr>
+
+                <tr>
+                    <td>Da Football</td>
+
+                    <td>42</td>
+                </tr>
+
+                <tr>
+                    <td>League</td>
+
+                    <td>37</td>
+                </tr>
+
+                <tr>
+                    <td>Allover</td>
+
+                    <td>17</td>
+                </tr>
+
+                <tr>
+                    <td>PaidPlayaz</td>
+
+                    <td>3</td>
+                </tr>
+
+                <tr>
+                    <td>Neasden OG</td>
+
+                    <td>-4</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <form name="inputForm">
+            <h3>Contact Us</h3>
+            Your Email:
+            <input type="email" name="email" id="email"/><br>
+            Your Message:
+            <textarea type="text" name="message" id="message"></textarea>
+            <button onclick="submitContact()">Submit</button>
+
+        </form>
+    </aside>
+
     <footer id="OurEditor">
 
         <h4>About our editor</h4>
@@ -216,13 +241,19 @@
 
 <script>
 
+$(window).load(function () {
+$('.flexslider').flexslider({animation: "slide",easing:"swing"});});
+
+
+
+
     function validateForm() {
         var email = document.forms["inputForm"]["email"].value;
         var message = document.forms["inputForm"]["message"].value;
 
 
         if (email == null || email == "") {
-              var email = document.getElementById("email");
+              email = document.getElementById("email");
               email.classList.add("error");
               window.setInterval(function () {
               email.classList.remove("error")
@@ -231,7 +262,7 @@
             return false;
         }
         if (message == null || message == "") {
-             var message = document.getElementById("message");
+             message = document.getElementById("message");
              message.classList.add("error");
              window.setInterval (function () {
              message.classList.remove("error")
@@ -241,24 +272,36 @@
 
     }
 
-    var xmlhttp=new XMLHttpRequest()
+   var submitContact = function(){
 
+    var xmlhttp=new XMLHttpRequest();
     {
-    xmlhttp.onreadystateschange=function()
+    xmlhttp.onreadystatechange=function()
     {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200);
+    var response = xmlhttp.response;
+
+        if (xmlhttp.readyState!==4){return;}
+
+        if (xmlhttp.status===200)
         {
-            alert("response received & processed.");
+            alert(response.message);
         }
-        if (xmlhttp.status==422);
+
+        if (xmlhttp.status===422)
         {
-            alert("There was an unexpected problem posting your message");
+            alert(response.message);
 
         }
-    }
+    }}
 
-xmlhttp.open("POST", "http://localhost:3000/api/submit?email=" + document.getElementById("email").value + "&message" + document.getElementById("message").value, true);
-xmlhttp.send();}
+
+xmlhttp.open("POST","http://localhost:3000/api/submit?email=" + document.getElementById("email").value + "&message=" + document.getElementById("message").value,true);
+
+xmlhttp.responseType="json";
+
+xmlhttp.send();
+
+    };
 
 
 
